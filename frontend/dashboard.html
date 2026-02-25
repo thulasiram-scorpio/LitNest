@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>LitNest - User Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+body{
+    display:flex;
+    min-height:100vh;
+    background:#f4f6fb;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+    width:80px;
+    background:linear-gradient(180deg,#1e1e2f,#2c2c54);
+    color:white;
+    padding:20px 10px;
+    position:fixed;
+    height:100%;
+    transition:0.3s;
+    overflow:hidden;
+}
+
+.sidebar.active{
+    width:250px;
+}
+
+.sidebar h2{
+    text-align:center;
+    margin-bottom:30px;
+    font-size:20px;
+    white-space:nowrap;
+    opacity:0;
+    transition:0.3s;
+}
+
+.sidebar.active h2{
+    opacity:1;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar ul li{
+    margin:20px 0;
+}
+
+.sidebar ul li a{
+    text-decoration:none;
+    color:#ddd;
+    display:flex;
+    align-items:center;
+    padding:10px;
+    border-radius:8px;
+    transition:0.3s;
+}
+
+.sidebar ul li a i{
+    font-size:18px;
+    min-width:40px;
+    text-align:center;
+}
+
+.sidebar ul li a span{
+    white-space:nowrap;
+    opacity:0;
+    transition:0.3s;
+}
+
+.sidebar.active ul li a span{
+    opacity:1;
+}
+
+.sidebar ul li a:hover{
+    background:#575fcf;
+    color:white;
+}
+
+/* ================= MAIN ================= */
+
+.main{
+    margin-left:80px;
+    width:100%;
+    transition:0.3s;
+    display:flex;
+    flex-direction:column;
+}
+
+.main.active{
+    margin-left:250px;
+}
+
+/* ================= TOPBAR ================= */
+
+.topbar{
+    background:white;
+    padding:15px 20px;
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    align-items:center;
+    box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
+
+.menu-btn{
+    font-size:22px;
+    cursor:pointer;
+}
+
+/* ================= SEARCH BAR ================= */
+
+.search-container{
+    justify-self:center;
+    position:relative;
+    width:350px;
+    transition:0.3s;
+}
+
+.search-container input{
+    width:100%;
+    padding:10px 40px;
+    border-radius:30px;
+    border:1px solid #ddd;
+    outline:none;
+    font-size:14px;
+    transition:0.3s;
+    background:#f8f9fc;
+}
+
+.search-container input:focus{
+    border-color:#575fcf;
+    box-shadow:0 0 10px rgba(87,95,207,0.3);
+    background:white;
+}
+
+.search-icon{
+    position:absolute;
+    left:15px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#888;
+    font-size:14px;
+}
+
+.clear-icon{
+    position:absolute;
+    right:15px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#aaa;
+    font-size:14px;
+    cursor:pointer;
+    display:none;
+    transition:0.2s;
+}
+
+.clear-icon:hover{
+    color:#575fcf;
+}
+
+/* ================= CONTENT ================= */
+
+.content{
+    padding:25px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+    .search-container{
+        width:200px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= SIDEBAR ================= -->
+
+<div class="sidebar" id="sidebar">
+    <h2>📚 LitNest</h2>
+    <ul>
+        <li><a href="#"><i class="fas fa-home"></i><span>Dashboard</span></a></li>
+        <li><a href="#"><i class="fas fa-book"></i><span>My Works</span></a></li>
+        <li><a href="genres.html"><i class="fas fa-layer-group"></i><span>Genres</span></a></li>
+        <li><a href="#"><i class="fas fa-heart"></i><span>Favorites</span></a></li>
+        <li><a href="#"><i class="fas fa-history"></i><span>Reading History</span></a></li>
+        <li><a href="#"><i class="fas fa-user"></i><span>Profile</span></a></li>
+        <li><a href="#"><i class="fas fa-cog"></i><span>Settings</span></a></li>
+        <li><a href="#"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a></li>
+    </ul>
+</div>
+
+<!-- ================= MAIN ================= -->
+
+<div class="main" id="main">
+
+    <div class="topbar">
+        <!-- Left -->
+        <i class="fas fa-bars menu-btn" onclick="toggleSidebar()"></i>
+
+        <!-- Center Search -->
+        <div class="search-container">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" id="searchInput"
+                   placeholder="Search books, authors..."
+                   oninput="toggleClear()">
+            <i class="fas fa-times clear-icon"
+               id="clearBtn"
+               onclick="clearSearch()"></i>
+        </div>
+
+        <!-- Right Empty (future profile area) -->
+        <div></div>
+    </div>
+
+    <div class="content">
+        <h2>Welcome Back 👋</h2>
+       
+    </div>
+
+</div>
+
+<!-- ================= SCRIPT ================= -->
+
+<script>
+function toggleSidebar(){
+    document.getElementById("sidebar").classList.toggle("active");
+    document.getElementById("main").classList.toggle("active");
+}
+
+function toggleClear(){
+    const input = document.getElementById("searchInput");
+    const clearBtn = document.getElementById("clearBtn");
+
+    if(input.value.length > 0){
+        clearBtn.style.display = "block";
+    } else {
+        clearBtn.style.display = "none";
+    }
+}
+
+function clearSearch(){
+    const input = document.getElementById("searchInput");
+    const clearBtn = document.getElementById("clearBtn");
+
+    input.value="";
+    clearBtn.style.display="none";
+    input.focus();
+}
+</script>
+
+</body>
+</html>
