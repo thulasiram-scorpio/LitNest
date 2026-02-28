@@ -1,0 +1,177 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+/* ================= WRAPPER ================= */
+
+.dashboard-wrapper{
+    display:flex;
+    min-height:100vh;
+    background:#f4f6fb;
+}
+
+/* ================= SIDEBAR ================= */
+
+.sidebar{
+    width:80px;
+    background:linear-gradient(180deg,#1e1e2f,#2c2c54);
+    color:white;
+    padding:20px 10px;
+    position:fixed;
+    height:100%;
+    transition:0.3s;
+    overflow:hidden;
+}
+
+.sidebar.active{
+    width:250px;
+}
+
+.sidebar h2{
+    text-align:center;
+    margin-bottom:30px;
+    font-size:20px;
+    white-space:nowrap;
+    opacity:0;
+    transition:0.3s;
+}
+
+.sidebar.active h2{
+    opacity:1;
+}
+
+.sidebar ul{
+    list-style:none;
+}
+
+.sidebar ul li{
+    margin:20px 0;
+}
+
+.sidebar ul li a{
+    text-decoration:none;
+    color:#ddd;
+    display:flex;
+    align-items:center;
+    padding:10px;
+    border-radius:8px;
+    transition:0.3s;
+}
+
+.sidebar ul li a i{
+    font-size:18px;
+    min-width:40px;
+    text-align:center;
+}
+
+.sidebar ul li a span{
+    white-space:nowrap;
+    opacity:0;
+    transition:0.3s;
+}
+
+.sidebar.active ul li a span{
+    opacity:1;
+}
+
+.sidebar ul li a:hover{
+    background:#575fcf;
+    color:white;
+}
+
+/* ================= MAIN ================= */
+
+.main{
+    margin-left:80px;
+    width:100%;
+    transition:0.3s;
+    display:flex;
+    flex-direction:column;
+}
+
+.main.active{
+    margin-left:250px;
+}
+
+/* ================= TOPBAR ================= */
+
+.topbar{
+    background:white;
+    padding:15px 20px;
+    display:grid;
+    grid-template-columns:auto 1fr auto;
+    align-items:center;
+    box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
+
+.menu-btn{
+    font-size:22px;
+    cursor:pointer;
+}
+
+/* ================= SEARCH BAR ================= */
+
+.search-container{
+    justify-self:center;
+    position:relative;
+    width:350px;
+    transition:0.3s;
+}
+
+.search-container input{
+    width:100%;
+    padding:10px 40px;
+    border-radius:30px;
+    border:1px solid #ddd;
+    outline:none;
+    font-size:14px;
+    transition:0.3s;
+    background:#f8f9fc;
+}
+
+.search-container input:focus{
+    border-color:#575fcf;
+    box-shadow:0 0 10px rgba(87,95,207,0.3);
+    background:white;
+}
+
+.search-icon{
+    position:absolute;
+    left:15px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#888;
+    font-size:14px;
+}
+
+.clear-icon{
+    position:absolute;
+    right:15px;
+    top:50%;
+    transform:translateY(-50%);
+    color:#aaa;
+    font-size:14px;
+    cursor:pointer;
+    transition:0.2s;
+}
+
+.clear-icon:hover{
+    color:#575fcf;
+}
+
+/* ================= CONTENT ================= */
+
+.content{
+    padding:25px;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media(max-width:768px){
+    .search-container{
+        width:200px;
+    }
+}

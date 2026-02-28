@@ -1,0 +1,128 @@
+/* ===== BODY BACKGROUND ===== */
+.login-body {
+  height: 100vh;
+  background: linear-gradient(to right, #dfe9f3, #fdfbfb);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ===== MAIN CONTAINER ===== */
+.container {
+  width: 900px;
+  height: 550px;
+  display: flex;
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* ===== LEFT SIDE ===== */
+.left {
+  flex: 1;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* LOGO */
+.logo {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 30px;
+}
+
+.logo span {
+  color: #2e7d32;
+}
+
+/* TABS */
+.tabs {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  font-size: 15px;
+  cursor: pointer;
+  padding-bottom: 5px;
+  border-bottom: 2px solid transparent;
+  transition: 0.3s;
+}
+
+.tab-btn.active {
+  border-bottom: 2px solid #2e7d32;
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+/* FORMS */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input {
+  padding: 12px 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  outline: none;
+  transition: 0.3s;
+}
+
+input:focus {
+  border-color: #2e7d32;
+  box-shadow: 0 0 5px rgba(46, 125, 50, 0.3);
+}
+
+/* SUBMIT BUTTON */
+.submit-btn {
+  margin-top: 10px;
+  padding: 12px;
+  border-radius: 8px;
+  border: none;
+  background: #2e7d32;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  background: #1b5e20;
+}
+
+/* ===== RIGHT SIDE ===== */
+.right {
+  flex: 1;
+  background: #f3f0e6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.right img {
+  width: 80%;
+  max-width: 350px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .container {
+    flex-direction: column;
+    width: 90%;
+    height: auto;
+  }
+
+  .right {
+    padding: 20px;
+  }
+}
