@@ -22,20 +22,9 @@ app.listen(5000,()=>{
  console.log("Server running");
 });
 
-app.use(
-  express.static(
-    path.join(__dirname, "../frontend")
-  )
-);
-
 function ensureAuth(req,res,next){
   if(req.isAuthenticated()){
      return next();
   }
-  res.redirect("/login.html");
+  res.redirect("http://localhost:5173/");
 }
-app.get("/dashboard", ensureAuth, (req,res)=>{
-  res.sendFile(
-    path.join(__dirname,"../frontend/dashboard.html")
-  );
-});

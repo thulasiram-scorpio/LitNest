@@ -126,3 +126,36 @@ input:focus {
     padding: 20px;
   }
 }
+
+/* GoogleButton.css */
+.google-btn-link {
+  text-decoration: none;
+}
+
+.google-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+  color: #1f1f1f;
+  font-family: 'Roboto', arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  padding: 0 16px;
+  border: 1px solid #747775;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  min-width: 200px;
+}
+
+.google-btn:hover {
+  background-color: #f8f9fa;
+  box-shadow: 0 1px 2px 0 rgba(60,64,67,0.30), 0 1px 3px 1px rgba(60,64,67,0.15);
+}
+
+.google-icon {
+  margin-right: 12px;
+  display: block;
+}
