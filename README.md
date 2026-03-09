@@ -1,6 +1,6 @@
 # LitNest
 
 
-– A Writing & Literature Platform
+A Writing & Literature Platform
 
  
