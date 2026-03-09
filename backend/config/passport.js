@@ -1,5 +1,6 @@
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
+const User = require("../models/User");
 require("dotenv").config();
 
 passport.use(
@@ -10,25 +11,56 @@ passport.use(
    callbackURL: "/auth/google/callback"
   },
 
-  (accessToken, refreshToken, profile, done) => {
+  async (accessToken, refreshToken, profile, done) => {
 
-    const user = {
-      googleId: profile.id,
+   try {
+
+    const email = profile.emails[0].value;
+
+    // 1️⃣ Check if user exists by email
+    let user = await User.findOne({ email });
+
+    if (user) {
+
+      // 2️⃣ If email exists but googleId not saved → update it
+      if (!user.googleId) {
+        user.googleId = profile.id;
+        await user.save();
+      }
+
+      return done(null, user);
+    }
+
+    // 3️⃣ If user does not exist → create new user
+    user = await User.create({
       name: profile.displayName,
-      email: profile.emails[0].value
-    };
+      email: email,
+      googleId: profile.id
+    });
 
     return done(null, user);
+
+   } catch (error) {
+    return done(error, null);
+   }
+
   }
  )
 );
 
-passport.serializeUser((user, done)=>{
- done(null,user);
+/* SESSION HANDLING */
+
+passport.serializeUser((user, done) => {
+ done(null, user.id);
 });
 
-passport.deserializeUser((user,done)=>{
- done(null,user);
+passport.deserializeUser(async (id, done) => {
+ try {
+  const user = await User.findById(id);
+  done(null, user);
+ } catch (error) {
+  done(error, null);
+ }
 });
 
 module.exports = passport;
