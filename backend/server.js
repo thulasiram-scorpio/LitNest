@@ -42,6 +42,9 @@ app.use(passport.session());
 
 app.use("/auth", require("./routes/auth"));
 
+// 🚀 NEW: Profile Routes (Includes Cloudinary Uploads)
+app.use("/api/profile", require("./routes/profile"));
+
 /* ================= SERVER ================= */
 
 app.listen(5000, () => {

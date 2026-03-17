@@ -112,8 +112,14 @@ input:focus {
 .right img {
   width: 80%;
   max-width: 350px;
+  animation:float 4s ease-in-out infinite;
 }
 
+/* Floating Animation */
+@keyframes float{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-15px); }
+}
 /* RESPONSIVE */
 @media (max-width: 900px) {
   .container {
@@ -159,3 +165,8 @@ input:focus {
   margin-right: 12px;
   display: block;
 }
+  .left,.right{
+        width:100%;
+    }
+  
+

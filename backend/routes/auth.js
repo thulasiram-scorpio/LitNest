@@ -117,4 +117,27 @@ router.post("/login", async (req, res) => {
 
 });
 
+/* ================= CHECK AUTH STATUS ================= */
+router.get("/status", (req, res) => {
+  // Passport automatically adds isAuthenticated() to the request
+  if (req.isAuthenticated()) {
+    res.json({ isAuthenticated: true, user: req.user });
+  } else {
+    res.json({ isAuthenticated: false });
+  }
+});
+
+/* ================= LOGOUT ================= */
+router.post("/logout", (req, res, next) => {
+  // Passport's built-in logout function
+  req.logout((err) => {
+    if (err) { 
+      return next(err); 
+    }
+    // Destroy the session cookie securely
+    res.clearCookie('connect.sid'); 
+    res.json({ success: true, message: "Logged out successfully" });
+  });
+});
+
 module.exports = router;
